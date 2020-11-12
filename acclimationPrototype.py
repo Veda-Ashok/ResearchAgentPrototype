@@ -22,11 +22,8 @@ def get_score(c, p, t): #c is total coins, p is collected coins
 #check score against threshold and add to queue is it passes. Clear queue if it does not pass
 def check_acclimation(c, p, t): #c is total coins, p is collected coins, t is threshold
     acclimated = False
-    if p/c >= t:
-        #print('here')
-        acclimation_queue.append(True)
-    else:
-        acclimation_queue.clear()
+    if len(acclimation_queue) < :
+
     print('length: ', len(acclimation_queue))
     return acclimation_queue
 
