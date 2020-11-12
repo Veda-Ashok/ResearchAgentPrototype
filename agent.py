@@ -22,17 +22,18 @@ def store_score(c, p, w):
     acclimation_queue.append(p/c)
     return acclimation_queue
     
-
 # check if acclimated
 def is_acclimated(q):
     acclimated = True
-    if len(q) is 1:
+    if len(q) == 1:
         acclimated = False
-    for i in range(len(q)):
-        if q[0] != q[i]:
+        return acclimated
+    for i in range(len(q)-1):
+        if q[i] != q[i+1]:
             acclimated = False
-        else:
-            current_policy = pick_policy()
+            return acclimated
+        
+    current_policy = pick_policy()  
     return acclimated
 
 
@@ -40,7 +41,6 @@ def is_acclimated(q):
 print(store_score(10, 9, 5))
 print(is_acclimated(acclimation_queue))
 print('\n')
-
 
 print(store_score(10, 4, 5))
 print(is_acclimated(acclimation_queue))
@@ -50,12 +50,9 @@ print(store_score(10, 3, 5))
 print(is_acclimated(acclimation_queue))
 print('\n')
 
-
-
 print(store_score(10, 6, 5))
 print(is_acclimated(acclimation_queue))
 print('\n')
-
 
 print(store_score(10, 8, 5))
 print(is_acclimated(acclimation_queue))
@@ -86,6 +83,37 @@ print(is_acclimated(acclimation_queue))
 print('\n')
 
 
+print(store_score(10, 4, 5))
+print(is_acclimated(acclimation_queue))
+print('\n')
+
+print(store_score(10, 3, 5))
+print(is_acclimated(acclimation_queue))
+print('\n')
+
+print(store_score(10, 2, 5))
+print(is_acclimated(acclimation_queue))
+print('\n')
+
+print(store_score(10, 3, 5))
+print(is_acclimated(acclimation_queue))
+print('\n')
+
+print(store_score(10, 3, 5))
+print(is_acclimated(acclimation_queue))
+print('\n')
 
 
+print(store_score(10, 3, 5))
+print(is_acclimated(acclimation_queue))
+print('\n')
 
+
+print(store_score(10, 3, 5))
+print(is_acclimated(acclimation_queue))
+print('\n')
+
+
+print(store_score(10, 3, 5))
+print(is_acclimated(acclimation_queue))
+print('\n')
