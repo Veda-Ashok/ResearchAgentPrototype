@@ -18,6 +18,10 @@ sub_policies = [[0, 1],[2, 3, 4],[5, 6, 7, 8]] #mock set of policies
 #     - If score is low, pick lower level (unless they are already on the easy level??)
 
 
+# How their score changes after changing policy
+# How quickly they die
+# Table of starting and ending policy --> track ave scores right before and after switch
+# Map of tuples (policy, performance)
 
 #pick a random policy
 def pick_policy():
