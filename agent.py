@@ -1,6 +1,8 @@
 import random
+import statistics
 acclimation_queue = []#tracks windows
-sub_policies = [[0, 1],[2, 3, 4],[5, 6, 7, 8]] #mock set of policies
+performance_list = []
+sub_policies = [0, 1, 2, 3, 4] #mock set of policies
 
 # pick a policy
 # get the first score
@@ -26,19 +28,20 @@ sub_policies = [[0, 1],[2, 3, 4],[5, 6, 7, 8]] #mock set of policies
 #pick a random policy
 def pick_policy():
     print('picking policy')
-    difficulty_level = 0
-    if len(acclimation_queue) == 0:
-        current_policy = random.choice(sub_policies[difficulty_level])
-    elif acclimation_queue[0] >= 0.8:
-        print('difficult')
-        difficulty_level = 2
-    elif acclimation_queue[0] >= 0.5 and acclimation_queue[0] < 0.7:
-        print('medium')
-        difficulty_level = 1
-    elif acclimation_queue[0] < 0.5:
-        print('easy')
-        difficulty_level = 0
-    current_policy = random.choice(sub_policies[difficulty_level])
+    # difficulty_level = 0
+    # if len(acclimation_queue) == 0:
+    #     current_policy = random.choice(sub_policies[difficulty_level])
+    # elif acclimation_queue[0] >= 0.8:
+    #     print('difficult')
+    #     difficulty_level = 2
+    # elif acclimation_queue[0] >= 0.5 and acclimation_queue[0] < 0.7:
+    #     print('medium')
+    #     difficulty_level = 1
+    # elif acclimation_queue[0] < 0.5:
+    #     print('easy')
+    #     difficulty_level = 0
+
+    current_policy = random.choice(sub_policies)
     print('policy: ', current_policy)
     return current_policy
 
@@ -46,22 +49,38 @@ pick_policy() #pick starting policy
 
 # track moving window
 def store_score(c, p, w):
+    score = p/c
+    performance_list.append(score)
     if len(acclimation_queue) is w :
         acclimation_queue.pop(0)
-    acclimation_queue.append(p/c)
+    acclimation_queue.append(score)
     return acclimation_queue
+
+def calculate_standard_deviation(q):
+    average = sum(q)/len(q)
+    variance = sum([((x-average) ** 2) for x in q])/ len(q)
+    return statistics.pstdev(q)
+
     
 # check if acclimated
 def is_acclimated(q):
-    acclimated = True
+    acclimated = False
+    print('dev is: ', statistics.pstdev(q))
     if len(q) == 1:
-        acclimated = False
         return acclimated
-    for i in range(len(q)-1):
-        if q[i] != q[i+1]:
+    for i in range(len(q)):
+        print('i: ', i)
+        if q[i] <= q[0] + calculate_standard_deviation(q) and q[i] >= q[0] - calculate_standard_deviation(q):
+            print('q[i]: ', q[i])
+            print('q[0]: ', q[0])
+            print('calculate_stdev: ', calculate_standard_deviation(q))
+            print(q[0] + calculate_standard_deviation(q))
+            print(q[0] - calculate_standard_deviation(q))
+            acclimated = True 
+        else:
             acclimated = False
-            return acclimated     
-    current_policy = pick_policy()  
+    if acclimated == True:   
+        pick_policy() 
     return acclimated
 
 
