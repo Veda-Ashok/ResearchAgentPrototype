@@ -63,22 +63,17 @@ def calculate_standard_deviation(q):
 
     
 # check if acclimated
-def is_acclimated(q):
+def is_acclimated(q, w):
     acclimated = False
     print('dev is: ', statistics.pstdev(q))
-    if len(q) == 1:
+    if len(q) < w:
         return acclimated
     for i in range(len(q)):
-        print('i: ', i)
         if q[i] <= q[0] + calculate_standard_deviation(q) and q[i] >= q[0] - calculate_standard_deviation(q):
-            print('q[i]: ', q[i])
-            print('q[0]: ', q[0])
-            print('calculate_stdev: ', calculate_standard_deviation(q))
-            print(q[0] + calculate_standard_deviation(q))
-            print(q[0] - calculate_standard_deviation(q))
             acclimated = True 
         else:
             acclimated = False
+            return acclimated
     if acclimated == True:   
         pick_policy() 
     return acclimated
@@ -86,81 +81,81 @@ def is_acclimated(q):
 
 
 print(store_score(10, 9, 5))
-print(is_acclimated(acclimation_queue))
+print(is_acclimated(acclimation_queue, 5))
 print('\n')
 
 print(store_score(10, 4, 5))
-print(is_acclimated(acclimation_queue))
+print(is_acclimated(acclimation_queue, 5))
 print('\n')
 
 print(store_score(10, 3, 5))
-print(is_acclimated(acclimation_queue))
+print(is_acclimated(acclimation_queue, 5))
 print('\n')
 
 print(store_score(10, 6, 5))
-print(is_acclimated(acclimation_queue))
+print(is_acclimated(acclimation_queue, 5))
 print('\n')
 
 print(store_score(10, 8, 5))
-print(is_acclimated(acclimation_queue))
+print(is_acclimated(acclimation_queue, 5))
 print('\n')
 
 
 print(store_score(10, 9, 5))
-print(is_acclimated(acclimation_queue))
+print(is_acclimated(acclimation_queue, 5))
 print('\n')
 
 print(store_score(10, 9, 5))
-print(is_acclimated(acclimation_queue))
-print('\n')
-
-
-print(store_score(10, 9, 5))
-print(is_acclimated(acclimation_queue))
+print(is_acclimated(acclimation_queue, 5))
 print('\n')
 
 
 print(store_score(10, 9, 5))
-print(is_acclimated(acclimation_queue))
+print(is_acclimated(acclimation_queue, 5))
 print('\n')
 
 
 print(store_score(10, 9, 5))
-print(is_acclimated(acclimation_queue))
+print(is_acclimated(acclimation_queue, 5))
+print('\n')
+
+
+print(store_score(10, 9, 5))
+print(is_acclimated(acclimation_queue, 5))
 print('\n')
 
 
 print(store_score(10, 4, 5))
-print(is_acclimated(acclimation_queue))
+print(is_acclimated(acclimation_queue, 5))
 print('\n')
 
 print(store_score(10, 3, 5))
-print(is_acclimated(acclimation_queue))
+print(is_acclimated(acclimation_queue, 5))
 print('\n')
 
 print(store_score(10, 2, 5))
-print(is_acclimated(acclimation_queue))
+print(is_acclimated(acclimation_queue, 5))
 print('\n')
 
 print(store_score(10, 3, 5))
-print(is_acclimated(acclimation_queue))
+print(is_acclimated(acclimation_queue, 5))
 print('\n')
 
 print(store_score(10, 3, 5))
-print(is_acclimated(acclimation_queue))
-print('\n')
-
-
-print(store_score(10, 3, 5))
-print(is_acclimated(acclimation_queue))
+print(is_acclimated(acclimation_queue, 5))
 print('\n')
 
 
 print(store_score(10, 3, 5))
-print(is_acclimated(acclimation_queue))
+print(is_acclimated(acclimation_queue, 5))
 print('\n')
 
 
 print(store_score(10, 3, 5))
-print(is_acclimated(acclimation_queue))
+print(is_acclimated(acclimation_queue, 5))
+print('\n')
+
+
+print(store_score(10, 3, 5))
+print(is_acclimated(acclimation_queue, 5))
 print('\n')
