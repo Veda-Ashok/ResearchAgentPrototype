@@ -12,12 +12,15 @@ sub_policies = [0, 1, 2, 3, 4] #mock set of policies
 
 #pick a random policy
 def pick_policy():
-    current_policy = random.choice(sub_policies) 
+    if len(performance_list):
+        current_policy = random.choice(sub_policies) 
+    else:
+        current_policy = 
     # print('policy: ', policy)
     return current_policy
 
 current_policy = pick_policy() #pick_policy() #pick starting policy
-# print(current_policy)
+
 
 
 # track moving window
@@ -37,6 +40,7 @@ def calculate_standard_deviation(q):
     
 # check if acclimated
 def is_acclimated(q, w):
+    global current_policy 
     acclimated = False
     print('dev is: ', statistics.pstdev(q))
     if len(q) < w:
@@ -48,15 +52,10 @@ def is_acclimated(q, w):
             acclimated = False
             return acclimated
     if acclimated == True:
-        performance_list.append((current_policy, trajectory))  
-        # print('traj b4: ', trajectory)
-        # print('current- pol: ', current_policy)
+        performance_list.append((current_policy, trajectory.copy()))  
         trajectory.clear()
-        # print('traj after: ', trajectory)
         current_policy = pick_policy() 
     return acclimated
-
-
 
 
 print('trajectory: ', trajectory)
